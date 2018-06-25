@@ -1,0 +1,24 @@
+{
+  "name": "hubot-ipfs",
+  "version": "0.1.0",
+  "description": "Hubut plugin for pinning files to IPFS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Benet <juan@protocol.ai>",
+  "license": "MIT",
+  "peerDependencies": {
+    "hubot": ">=2 <10 || 0.0.0-development"
+  },
+  "engines": {
+    "node": "> 4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamiew/hubot-ipfs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jamiew/hubot-ipfs/issues"
+  }
+}
