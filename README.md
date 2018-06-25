@@ -1,7 +1,12 @@
 hubot-ipfs
 ==========
 
+***WIP WIP WIP!***
+
 A hubot script that lets you pin files in IPFS (and other daemon interactions)
+
+This is a plugin-ified version of the ipfs.coffee script from https://github.com/ipfs/ipfs-hubot so
+that you can easily include in an existing Hubot without just copying files around.
 
 See [`src/ipfs.coffee`](src/ipfs.coffee) for full documentation.
 
