@@ -4,7 +4,10 @@
   "description": "Hubut plugin for pinning files to IPFS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "standard",
+    "test": "nyc --reporter=html --reporter=text mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "Juan Benet <juan@protocol.ai>",
   "license": "MIT",
@@ -20,5 +23,21 @@
   },
   "bugs": {
     "url": "https://github.com/jamiew/hubot-ipfs/issues"
+  },
+  "dependencies": {
+    "ipfs-api": "^22.1.1",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "chai": "^2.1.1",
+    "coveralls": "^2.13.1",
+    "hubot": "^3.0.0",
+    "hubot-mock-adapter-v3": "^1.0.1",
+    "mocha": "^2.1.0",
+    "nyc": "^11.0.3",
+    "sinon": "^1.13.0",
+    "sinon-chai": "^2.7.0",
+    "standard": "^10.0.2",
+    "semantic-release": "^6.3.6"
   }
 }
