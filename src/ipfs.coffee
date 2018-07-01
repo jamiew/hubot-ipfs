@@ -117,7 +117,7 @@ ipfsApi = require 'ipfs-api'
 _ = require 'underscore'
 
 localApiUrl = '/ip4/127.0.0.1/tcp/5001'
-localGatewayUrl = 'http://localhost:8080'
+localGatewayUrl = 'http://localhost:8088'
 globalGatewayUrl = 'https://gateway.ipfs.io'
 
 # grab values from env vars
