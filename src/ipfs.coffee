@@ -236,7 +236,7 @@ getParams = (params, res) ->
     return [] # no params
 
 testApi = (res, cb) ->
-  console.log("testApi running command: " + res.message.text)
+  console.log("running command: <#{res.message.user.name}> #{res.message.rawText}")
   ipfs.version (err) ->
     if (err)
       return reportFail res, 'api not working. ' + err
@@ -281,6 +281,13 @@ runCmdContent = (cmdfn) -> (res) ->
 # pinbot implementation
 module.exports = (robot) ->
 
+  resolveToCid = (res, path, cb) ->
+    ipfs.resolve path, {r: true}, mustSucceed res, (path2) ->
+      if path2.substr(0, 6) != '/ipfs/'
+        return reportFail res, 'failed to resolve path. got: ' + path2
+      cid = path2.substr(6)
+      cb(cid)
+
   # NODE INFO
   robot.respond /ipfs api-info/i, (res) ->
     res.send """
@@ -317,12 +324,13 @@ module.exports = (robot) ->
   # FILE COMMANDS
   robot.respond /ipfs files read (\S+)/i, runCmdContent ipfs.files.read
   robot.respond /ipfs files stat (\S+)/i, runCmd ipfs.files.stat
-  robot.respond /ipfs files ls (\S)?/i, runCmd ipfs.files.ls,
+  robot.respond /ipfs files ls (\S+)?/i, runCmd ipfs.files.ls,
     output: (o) -> _.pluck(o, 'name').join('\n')
 
   # NAME COMMANDS
+  robot.respond /ipfs resolve (\S+)/i, runCmdPath ipfs.resolve
   robot.respond /ipfs name resolve (\S+)/i, runCmd ipfs.name.resolve
-  robot.respond /ipfs dns (\S+)/i, runCmd ipfs.dns.resolve
+  robot.respond /ipfs dns (\S+)/i, runCmd ipfs.dns
 
   # REPO AND PINNING COMMANDS
   robot.respond /ipfs repo version/i, runCmd ipfs.repo.version
@@ -334,12 +342,14 @@ module.exports = (robot) ->
     testApi res, ->
       res.send "pinning #{prettyPath path} (warning: experimental)"
       # todo: implement -r=false support (right now it assumes -r=true)
-      ipfs.refs path, {r: true}, mustSucceed res, (r) ->
-        ipfs.pin.add path, {r: true}, mustSucceed res, (r) ->
-          res.send """
-            success: pinned recursively: #{prettyPath path}
-            (warning: this pinbot is experimental. do not rely on me yet.)
-            """
+      resolveToCid res, path, (cid) ->
+        res.send "resolved to cid: `#{cid}`"
+        ipfs.refs cid, {r: true}, mustSucceed res, (r) ->
+          ipfs.pin.add cid, {r: true}, mustSucceed res, (r) ->
+            res.send """
+              success: pinned recursively: #{prettyPath path}
+              (warning: this pinbot is experimental. do not rely on me yet.)
+              """
 
   robot.respond /ipfs pin ls (\S+)/i, runCmdPath ipfs.pin.ls,
     output: (o) -> o.map((e) -> "#{e.hash} #{e.type}").join('\n')
