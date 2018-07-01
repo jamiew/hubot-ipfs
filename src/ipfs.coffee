@@ -108,7 +108,6 @@ OTHER COMMANDS
 """
 
 allCommandsHelp = allCommandsHelp.replace(/^#.*\n?/gm, '')
-console.log allCommandsHelp
 
 
 # ------------------------------------------------------------
