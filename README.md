@@ -1,26 +1,29 @@
-hubot-ipfs
-==========
+# hubot-ipfs
 
-***WIP WIP WIP!***
+![Cool robot saying "I have pinned the things"](https://github.com/jamiew/ipfs-hubot/blob/master/img/ipfs-hubot.png)
 
-A hubot script that lets you pin files in IPFS (and other daemon interactions)
+A hubot script that lets you interact with a local IPFS daemon, including pinning files.
 
-This is a plugin-ified version of the ipfs.coffee script from https://github.com/ipfs/ipfs-hubot so
-that you can easily include in an existing Hubot without just copying files around.
+This is a script/plugin-ified version of the `ipfs.coffee` script by @jbenet: https://github.com/ipfs/ipfs-hubot
 
-See [`src/ipfs.coffee`](src/ipfs.coffee) for full documentation.
+## Commands
 
+* `hubot pin QmDEADBEEF...` -- pin files
+* `hubot ipfs api-info` -- show configured local and global gateways
+* `hubot ipfs swarm peers`
+* and almost all other `go-ipfs` daemon commands
+* See [`src/ipfs.coffee`](src/ipfs.coffee) for full documentation.
 
-TODO
-----
+Ouput Looks like this:
 
-* How to run `ipfs daemon`? Procfile will only work if you have `go-ipfs` installed already. Maybe a custom Heroku buildpack?
-* Add contributors, license
-* Write some basic tests
+```
+hubot> hubot ipfs pin QmXXXXXXXXXXXXXXXXXXx
+hubot> TODO FIXME show don't tell. Add a screenshot
+```
 
+## Installation
 
-Installation
-------------
+This assumes you already have [setup a Hubot.](https://hubot.github.com/docs/)
 
 In your hubot project repository, run:
 
@@ -34,22 +37,60 @@ Then add **hubot-ipfs** to your `external-scripts.json`:
 ]
 ```
 
-Example Interaction
--------------------
+## Configuration
+
+Some things in life you can't change, but these things you can.
+
+* `IPFS_LOCAL_API` (default=localhost:5001)
+* `IPFS_LOCAL_GATEWAY` (default=http://localhost:8088)
+* `IPFS_GLOBAL_GATEWAY` (default=https://ipfs.io/ipfs)
+
+
+## Development
+
+Clone this repository, then:
 
 ```
-hubot> hubot ipfs pin QmXXXXXXXXXXXXXXXXXXx
-hubot> FIXME what is the output
+npm install
+```
+
+To run tests:
+
+```
+npm test
+```
+
+To actually work on the script, it's easiest to setup a Hubot and include your
+local `hubot-ipfs` plugin as a dependency. e.g. in the hubot's `package.json`, something like:
+
+```
+ 	"dependencies": {
+    "hubot": "^2.19.0",
+    "hubot-ipfs": "file:~/dev/hubot-ipfs"
+  },
+```
+
+Protip: try out the `hubot-reload` plugin so you don't have to restart your REPL on changes
+
+
+## Publishing a new version
+
+```
+npm run semantic-release
 ```
 
 
-Contributors
-------------
+## Contribute
 
-* Juan Benet
+Feel free to join in. All welcome. Open an [issue](https://github.com/ipfs/ipfs-hubot/issues)!
 
+This repository falls under the IPFS [Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md).
 
-License
--------
+**Want to hack on IPFS?**
 
-TODO
+[![](https://cdn.rawgit.com/jbenet/contribute-ipfs-gif/master/img/contribute.gif)](https://github.com/ipfs/community/blob/master/contributing.md)
+
+## License
+
+[MIT](LICENSE) © Protocol Labs Inc.
+
