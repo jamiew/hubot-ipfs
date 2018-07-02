@@ -7,7 +7,7 @@
     "pretest": "standard",
     "test": "nyc --reporter=html --reporter=text mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release && npm publish"
   },
   "author": "Juan Benet <juan@protocol.ai>",
   "license": "MIT",
