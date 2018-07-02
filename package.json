@@ -9,7 +9,14 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "semantic-release": "semantic-release && npm publish"
   },
-  "author": "Juan Benet <juan@protocol.ai>",
+  "contributors": [
+    "Juan Benet <juan@protocol.ai>",
+    "Jamie Wilkinson <jamie@jamiedubs.com>"
+  ],
+  "keywords": [
+    "hubot",
+    "ipfs"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "hubot": ">=2 <10 || 0.0.0-development"
