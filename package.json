@@ -15,6 +15,7 @@
   ],
   "keywords": [
     "hubot",
+    "hubot-scripts",
     "ipfs"
   ],
   "license": "MIT",
