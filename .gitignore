@@ -1,4 +1,5 @@
 .DS_Store
+.npmrc
 .nyc_output/
 coverage/
 node_modules/
