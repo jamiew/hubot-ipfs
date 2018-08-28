@@ -1,6 +1,6 @@
 # hubot-ipfs
 
-![Cool robot saying "I have pinned the things"](https://github.com/jamiew/ipfs-hubot/blob/master/img/ipfs-hubot.png)
+![Cool robot saying "I have pinned the things"](https://ipfs.io/ipfs/QmcKGvXq3i3KforDDhRmFEKRUvm6HbB1khJmA3iuShmP8a)
 
 A hubot script that lets you interact with a local IPFS daemon, including pinning files.
 
