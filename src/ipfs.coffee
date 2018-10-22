@@ -130,7 +130,7 @@ ipfs = ipfsApi localApiUrl
 # test it just to show if it's not online on startup.
 ipfs.version (err) ->
   if (err)
-    console.error 'api not online yet. ' + err
+    console.error 'IPFS API not online: ' + err
 
 # ------------------------------------------------------------
 # content formatting
@@ -209,7 +209,7 @@ cmdErrMsg = (cmd, err) ->
 
 # hook into here to log or otherwise detect failures
 reportFail = (res, err) ->
-  console.log(res.message.rawText, err)
+  console.log "IPFS error: ", res.message.rawText, err
   res.send cmdErrMsg res.message.rawText, err
   return err
 
@@ -235,7 +235,7 @@ getParams = (params, res) ->
     return [] # no params
 
 testApi = (res, cb) ->
-  console.log("running command: <#{res.message.user.name}> #{res.message.rawText}")
+  console.log "IPFS running command: <#{res.message.user.name}> #{res.message.rawText}"
   ipfs.version (err) ->
     if (err)
       return reportFail res, 'api not working. ' + err
