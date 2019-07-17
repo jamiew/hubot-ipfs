@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "hubot": ">=2 <10 || 0.0.0-development"
+    "hubot": "^3"
   },
   "engines": {
     "node": "> 4.0.0"
@@ -37,15 +37,15 @@
     "underscore": "^1.9.1"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "coveralls": "^3.0.2",
-    "hubot": "^3.0.1",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.5",
+    "hubot": "^3.3.2",
     "hubot-mock-adapter-v3": "^1.0.1",
-    "mocha": "^5.2.0",
-    "nyc": "^12.0.2",
-    "semantic-release": "^15.8.1",
-    "sinon": "^6.1.4",
-    "sinon-chai": "^3.2.0",
-    "standard": "^11.0.1"
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "semantic-release": "^15.13.18",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0",
+    "standard": "^13.0.2"
   }
 }
